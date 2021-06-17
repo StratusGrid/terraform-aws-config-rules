@@ -12,9 +12,15 @@
 #   default = ""
 # }
 
+variable "acm_certificate_expiration_check" {
+  description = "True/False to add certificate expiration check to Config. Default is false"
+  type        = bool
+  default     = false
+}
+
 variable "input_tags" {
   description = "Map of tags to apply to resources"
-  type        = map
+  type        = map(any)
   default = {
     Developer   = "StratusGrid"
     Provisioner = "Terraform"
@@ -35,7 +41,7 @@ variable "required_tags_enabled" {
 
 variable "required_tags" {
   description = "Map of tag keys, and optionally values, that are required."
-  type        = map
+  type        = map(any)
   default     = {}
 }
 
