@@ -51,7 +51,7 @@ variable "source_recorder" {
 }
 
 variable "daysToExpiration" {
-  description = "Defines the number of days before expiration before Config flags a rule as noncompliant."
+  description = "Defines the number of days before expiration occurs and Config flags a certificate as noncompliant."
   type        = string
   default     = 14
 }
