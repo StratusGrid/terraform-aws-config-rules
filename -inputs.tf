@@ -55,3 +55,24 @@ variable "daysToExpiration" {
   type        = string
   default     = 14
 }
+
+variable "message" {
+  description = "Message that is published to SNS."
+  type = string
+}
+
+variable "topic_arn" {
+  description = "The ARN of the SNS Topic you are publishing to."
+  type = string
+}
+
+variable "automation_role" {
+  description = "The role that Config uses to publish to SNS automatically."
+  type = string
+}
+
+variable "sns_notifications" {
+  description = "Used to enable SNS notifications."
+  type = bool
+  default = false
+}
