@@ -58,7 +58,7 @@ resource "aws_config_config_rule" "acm_certificate_expiration_check" {
   }
 
   maximum_execution_frequency = "TwentyFour_Hours"
-  input_parameters            = jsonencode( {"var.daysToExpiration" : "" })
+  input_parameters            = jsonencode({ "var.daysToExpiration" : "" })
 }
 
 # https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html

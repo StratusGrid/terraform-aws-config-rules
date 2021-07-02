@@ -53,5 +53,5 @@ variable "source_recorder" {
 variable "daysToExpiration" {
   description = "Defines the number of days before expiration before Config flags a rule as noncompliant."
   type        = string
-  default = 14
+  default     = 14
 }
