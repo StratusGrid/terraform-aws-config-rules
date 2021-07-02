@@ -51,7 +51,28 @@ variable "source_recorder" {
 }
 
 variable "daysToExpiration" {
-  description = "Defines the number of days before expiration before Config flags a certificate as noncompliant."
+  description = "Defines the number of days before expiration occurs and Config flags a certificate as noncompliant."
   type        = string
   default     = 14
+}
+
+variable "message" {
+  description = "Message that is published to SNS."
+  type = string
+}
+
+variable "topic_arn" {
+  description = "The ARN of the SNS Topic you are publishing to."
+  type = string
+}
+
+variable "automation_role" {
+  description = "The role that Config uses to publish to SNS automatically."
+  type = string
+}
+
+variable "sns_notifications" {
+  description = "Used to enable SNS notifications."
+  type = bool
+  default = false
 }
