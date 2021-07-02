@@ -42,25 +42,6 @@ resource "aws_config_config_rule" "iam_user_mfa_enabled" {
 
 
 ### Regional Rules ###
-
-# https://docs.aws.amazon.com/config/latest/developerguide/acm-certificate-expiration-check.html
-resource "aws_config_config_rule" "acm_certificate_expiration_check" {
-  name        = "acm-certificate-expiration-check"
-  description = "Checks to see if an ACM certificate has expired."
-  count       = var.acm_certificate_expiration_check ? 1 : 0
-  source {
-    owner             = "AWS"
-    source_identifier = "ACM_CERTIFICATE_EXPIRATION_CHECK"
-  }
-
-  scope {
-    compliance_resource_types = ["AWS::ACM::Certificates"]
-  }
-
-  maximum_execution_frequency = "TwentyFour_Hours"
-  input_parameters            = jsonencode({ "var.daysToExpiration" : "" })
-}
-
 # https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html
 resource "aws_config_config_rule" "required_tags" {
   name  = "required-tags"
