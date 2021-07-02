@@ -12,15 +12,9 @@
 #   default = ""
 # }
 
-variable "acm_certificate_expiration_check" {
-  description = "True/False to add certificate expiration check to Config. Default is false"
-  type        = bool
-  default     = false
-}
-
 variable "input_tags" {
   description = "Map of tags to apply to resources"
-  type        = map(any)
+  type        = map
   default = {
     Developer   = "StratusGrid"
     Provisioner = "Terraform"
@@ -41,17 +35,11 @@ variable "required_tags_enabled" {
 
 variable "required_tags" {
   description = "Map of tag keys, and optionally values, that are required."
-  type        = map(any)
+  type        = map
   default     = {}
 }
 
 variable "source_recorder" {
   description = "The AWS Config Recorder for this region. This is used to set the correct application order/dependency chain."
   type        = string
-}
-
-variable "daysToExpiration" {
-  description = "Defines the number of days before expiration before Config flags a certificate as noncompliant."
-  type        = string
-  default     = 14
 }
