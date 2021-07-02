@@ -49,3 +49,9 @@ variable "source_recorder" {
   description = "The AWS Config Recorder for this region. This is used to set the correct application order/dependency chain."
   type        = string
 }
+
+variable "daysToExpiration" {
+  description = "Defines the number of days before expiration before Config flags a rule as noncompliant."
+  type        = string
+  default = 14
+}
