@@ -12,15 +12,6 @@
 #   default = ""
 # }
 
-variable "input_tags" {
-  description = "Map of tags to apply to resources"
-  type        = map
-  default = {
-    Developer   = "StratusGrid"
-    Provisioner = "Terraform"
-  }
-}
-
 variable "include_global_resource_rules" {
   description = "True/False to add global resource rules to Config. Default is false"
   type        = string
@@ -35,11 +26,6 @@ variable "required_tags_enabled" {
 
 variable "required_tags" {
   description = "Map of tag keys, and optionally values, that are required."
-  type        = map
+  type        = map(any)
   default     = {}
-}
-
-variable "source_recorder" {
-  description = "The AWS Config Recorder for this region. This is used to set the correct application order/dependency chain."
-  type        = string
 }
