@@ -114,9 +114,9 @@ module "aws_config_rules_us_west_2" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_include_global_resource_rules"></a> [include\_global\_resource\_rules](#input\_include\_global\_resource\_rules) | True/False to add global resource rules to Config. Default is false | `string` | `false` | no |
+| <a name="input_input_tags"></a> [input\_tags](#input\_input\_tags) | Map of tags to apply to resources | `map(any)` | <pre>{<br>  "Developer": "StratusGrid",<br>  "Provisioner": "Terraform"<br>}</pre> | no |
 | <a name="input_required_tags"></a> [required\_tags](#input\_required\_tags) | Map of tag keys, and optionally values, that are required. | `map(any)` | `{}` | no |
 | <a name="input_required_tags_enabled"></a> [required\_tags\_enabled](#input\_required\_tags\_enabled) | True/False to add RequiredTags to Config. Default is false | `string` | `false` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Maps of tags to apply to resources | `map(string)` | `{}` | no |
 
 ## Outputs
 

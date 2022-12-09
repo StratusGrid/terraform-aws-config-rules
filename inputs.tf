@@ -30,8 +30,11 @@ variable "required_tags" {
   default     = {}
 }
 
-variable "tags" {
-  type        = map(string)
-  description = "Maps of tags to apply to resources"
-  default     = {}
+variable "input_tags" {
+  description = "Map of tags to apply to resources"
+  type        = map(any)
+  default = {
+    Developer   = "StratusGrid"
+    Provisioner = "Terraform"
+  }
 }
