@@ -9,7 +9,7 @@ AWS Config rules module to put in standard policies
 ```hcl
 module "aws_config_rules_us_east_1" {
   source = "StratusGrid/config-rules/aws"
-  version = "1.0.0"
+  version = "x.x.x" # Constraint the version wanted here. Stratusgrid updates version often, so check to see what version is applicable to a specific case.
 
   include_global_resource_rules = true #only include global resource on one region to prevent duplicate rules
   required_tags_enabled = true
@@ -27,7 +27,7 @@ module "aws_config_rules_us_east_1" {
 ```hcl
 module "aws_config_rules_us_east_1" {
   source = "StratusGrid/config-rules/aws"
-  version = "1.0.0"
+  version = "x.x.x" # Constraint the version wanted here. Stratusgrid updates version often, so check to see what version is applicable to a specific case.
 
   include_global_resource_rules = true #only include global resource on one region to prevent duplicate rules
   required_tags_enabled = true
@@ -46,7 +46,7 @@ module "aws_config_rules_us_east_1" {
 
 module "aws_config_rules_us_east_2" {
   source = "StratusGrid/config-rules/aws"
-  version = "1.0.0"
+  version = "x.x.x" # Constraint the version wanted here. Stratusgrid updates version often, so check to see what version is applicable to a specific case.
 
   required_tags_enabled = true
 
@@ -64,7 +64,7 @@ module "aws_config_rules_us_east_2" {
 
 module "aws_config_rules_us_west_1" {
   source = "StratusGrid/config-rules/aws"
-  version = "1.0.0"
+  version = "x.x.x" # Constraint the version wanted here. Stratusgrid updates version often, so check to see what version is applicable to a specific case.
 
   required_tags_enabled = true
 
@@ -82,7 +82,7 @@ module "aws_config_rules_us_west_1" {
 
 module "aws_config_rules_us_west_2" {
   source = "StratusGrid/config-rules/aws"
-  version = "1.0.0"
+  version = "x.x.x" # Constraint the version wanted here. Stratusgrid updates version often, so check to see what version is applicable to a specific case.
 
   required_tags_enabled = true
 
