@@ -29,3 +29,9 @@ variable "required_tags" {
   type        = map(any)
   default     = {}
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Maps of tags to apply to resources"
+  default     = {}
+}

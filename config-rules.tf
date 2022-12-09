@@ -12,6 +12,8 @@ resource "aws_config_config_rule" "root_account_mfa_enabled" {
   }
 
   maximum_execution_frequency = "TwentyFour_Hours"
+
+  tags = local.common_tags
 }
 
 #https://docs.aws.amazon.com/config/latest/developerguide/iam-root-access-key-check.html
@@ -25,6 +27,8 @@ resource "aws_config_config_rule" "iam_root_access_key_check" {
   }
 
   maximum_execution_frequency = "TwentyFour_Hours"
+
+  tags = local.common_tags
 }
 
 #https://docs.aws.amazon.com/config/latest/developerguide/iam-user-mfa-enabled.html
@@ -38,6 +42,8 @@ resource "aws_config_config_rule" "iam_user_mfa_enabled" {
   }
 
   maximum_execution_frequency = "TwentyFour_Hours"
+
+  tags = local.common_tags
 }
 
 
@@ -50,16 +56,12 @@ resource "aws_config_config_rule" "required_tags" {
   source {
     owner             = "AWS"
     source_identifier = "REQUIRED_TAGS"
-
   }
 
   input_parameters = jsonencode(var.required_tags)
+
+  tags = local.common_tags
 }
-
-
-
-
-
 
 ### For Possible implementation later ###
 # resource "aws_config_config_rule" "s3_bucket_public_read_prohibited" {
