@@ -9,7 +9,8 @@ AWS Config rules module to put in standard policies
 ```hcl
 module "aws_config_rules_us_east_1" {
   source = "StratusGrid/config-rules/aws"
-  version = "1.0.0"
+  # StratusGrid recommends pinning every module to a specific version
+  version = "x.x.x"
 
   include_global_resource_rules = true #only include global resource on one region to prevent duplicate rules
   required_tags_enabled = true
@@ -27,7 +28,8 @@ module "aws_config_rules_us_east_1" {
 ```hcl
 module "aws_config_rules_us_east_1" {
   source = "StratusGrid/config-rules/aws"
-  version = "1.0.0"
+  # StratusGrid recommends pinning every module to a specific version
+  version = "x.x.x"
 
   include_global_resource_rules = true #only include global resource on one region to prevent duplicate rules
   required_tags_enabled = true
@@ -46,7 +48,8 @@ module "aws_config_rules_us_east_1" {
 
 module "aws_config_rules_us_east_2" {
   source = "StratusGrid/config-rules/aws"
-  version = "1.0.0"
+  # StratusGrid recommends pinning every module to a specific version
+  version = "x.x.x"
 
   required_tags_enabled = true
 
@@ -64,7 +67,8 @@ module "aws_config_rules_us_east_2" {
 
 module "aws_config_rules_us_west_1" {
   source = "StratusGrid/config-rules/aws"
-  version = "1.0.0"
+  # StratusGrid recommends pinning every module to a specific version
+  version = "x.x.x"
 
   required_tags_enabled = true
 
@@ -82,7 +86,8 @@ module "aws_config_rules_us_west_1" {
 
 module "aws_config_rules_us_west_2" {
   source = "StratusGrid/config-rules/aws"
-  version = "1.0.0"
+  # StratusGrid recommends pinning every module to a specific version
+  version = "x.x.x"
 
   required_tags_enabled = true
 
