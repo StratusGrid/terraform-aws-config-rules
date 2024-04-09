@@ -1,13 +1,24 @@
 <!-- BEGIN_TF_DOCS -->
-# terraform-aws-config-rules
+<p align="center">                                                                                                                                            
+                                                                                
+  <img src="https://github.com/StratusGrid/terraform-readme-template/blob/main/header/stratusgrid-logo-smaller.jpg?raw=true" />
+  <p align="center">                                                           
+    <a href="https://stratusgrid.com/book-a-consultation">Contact Us Test</a> |                  
+    <a href="https://stratusgrid.com/cloud-cost-optimization-dashboard">Stratusphere FinOps</a> |
+    <a href="https://stratusgrid.com">StratusGrid Home</a> |
+    <a href="https://stratusgrid.com/blog">Blog</a>
+  </p>                    
+</p>
 
-GitHub: [StratusGrid/terraform-aws-config-rules](https://github.com/StratusGrid/terraform-aws-config-rules)
+ # terraform-aws-config-rules
 
-AWS Config rules module to put in standard policies
+ GitHub: [StratusGrid/terraform-aws-config-rules](https://github.com/StratusGrid/terraform-aws-config-rules)
 
-## Example Single Region Configuration:
-```hcl
-module "aws_config_rules_us_east_1" {
+ AWS Config rules module to put in standard policies
+ 
+ ## Example Single Region Configuration:
+ ```hcl
+ module "aws_config_rules_us_east_1" {
   source = "StratusGrid/config-rules/aws"
   # StratusGrid recommends pinning every module to a specific version
   version = "x.x.x"
@@ -22,11 +33,11 @@ module "aws_config_rules_us_east_1" {
     tag3Key   = "Application"
   }
 }
-```
----
-## Example Multi Region Configuration:
-```hcl
-module "aws_config_rules_us_east_1" {
+ ```
+ ---
+ ## Example Multi Region Configuration:
+ ```hcl
+ module "aws_config_rules_us_east_1" {
   source = "StratusGrid/config-rules/aws"
   # StratusGrid recommends pinning every module to a specific version
   version = "x.x.x"
@@ -102,10 +113,10 @@ module "aws_config_rules_us_west_2" {
     aws = "aws.us-west-2"
   }
 }
-```
----
+ ```
+ ---
 
-## Resources
+ ## Resources
 
 | Name | Type |
 |------|------|
@@ -114,7 +125,7 @@ module "aws_config_rules_us_west_2" {
 | [aws_config_config_rule.required_tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.root_account_mfa_enabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 
-## Inputs
+ ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
@@ -123,11 +134,11 @@ module "aws_config_rules_us_west_2" {
 | <a name="input_required_tags"></a> [required\_tags](#input\_required\_tags) | Map of tag keys, and optionally values, that are required. | `map(any)` | `{}` | no |
 | <a name="input_required_tags_enabled"></a> [required\_tags\_enabled](#input\_required\_tags\_enabled) | True/False to add RequiredTags to Config. Default is false | `string` | `false` | no |
 
-## Outputs
+ ## Outputs
 
 No outputs.
 
----
+ ---
 
-<span style="color:red">Note:</span> Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
+ <span style="color:red">Note:</span> Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
 <!-- END_TF_DOCS -->
