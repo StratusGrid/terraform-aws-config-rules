@@ -14,6 +14,8 @@ content: |-
   GitHub: [StratusGrid/terraform-aws-config-rules](https://github.com/StratusGrid/terraform-aws-config-rules)
 
   AWS Config rules module to put in standard policies
+
+  Note: Config Rule requires an existing Configuration Recorder to be present.
   
   ## Example Single Region Configuration:
   ```hcl
