@@ -15,6 +15,8 @@
  GitHub: [StratusGrid/terraform-aws-config-rules](https://github.com/StratusGrid/terraform-aws-config-rules)
 
  AWS Config rules module to put in standard policies
+
+ Note: Config Rule requires an existing Configuration Recorder to be present.
  
  ## Example Single Region Configuration:
  ```hcl
@@ -120,6 +122,7 @@ module "aws_config_rules_us_west_2" {
 
 | Name | Type |
 |------|------|
+| [aws_config_config_rule.aws_managed_rules](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.iam_root_access_key_check](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.iam_user_mfa_enabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.required_tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
@@ -129,6 +132,7 @@ module "aws_config_rules_us_west_2" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_aws_managed_rules"></a> [aws\_managed\_rules](#input\_aws\_managed\_rules) | A list of AWS Managed Rules that should be enabled on the account.<br><br>See the following for a list of possible rules to enable:<br>https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html | <pre>map(object({<br>    description      = string<br>    identifier       = string<br>    input_parameters = any<br>  }))</pre> | `{}` | no |
 | <a name="input_include_global_resource_rules"></a> [include\_global\_resource\_rules](#input\_include\_global\_resource\_rules) | True/False to add global resource rules to Config. Default is false | `string` | `false` | no |
 | <a name="input_input_tags"></a> [input\_tags](#input\_input\_tags) | Map of tags to apply to resources | `map(any)` | <pre>{<br>  "Developer": "StratusGrid",<br>  "Provisioner": "Terraform"<br>}</pre> | no |
 | <a name="input_required_tags"></a> [required\_tags](#input\_required\_tags) | Map of tag keys, and optionally values, that are required. | `map(any)` | `{}` | no |
