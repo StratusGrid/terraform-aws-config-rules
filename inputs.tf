@@ -12,29 +12,27 @@
 #   default = ""
 # }
 
-# Deprecated in version ??
-
+# Deprecated in version 2.0.0, remove from code in next release
 # variable "include_global_resource_rules" {
 #   description = "True/False to add global resource rules to Config. Default is false"
 #   type        = string
 #   default     = false
 # }
 
-# Deprecated in version ??
+# Deprecated in version 2.0.0, remove from code in next release
 # variable "required_tags_enabled" {
 #   description = "True/False to add RequiredTags to Config. Default is false"
 #   type        = string
 #   default     = false
 # }
 
-# Deprecated in version ??
+# Deprecated in version 2.0.0, remove from code in next release
 # variable "required_tags" {
 #   description = "Map of tag keys, and optionally values, that are required."
 #   type        = map(any)
 #   default     = {}
 # }
 
-# Deprecated in version ??
 variable "input_tags" {
   description = "Map of tags to apply to resources"
   type        = map(any)
@@ -66,9 +64,6 @@ variable "custom_managed_rules" {
     Reference
     https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_develop-rules.html
   DOC
-  type = map(object({
-    description      = string
-    
-  }))
-  default = {}
+  type        = map(any)
+  default     = {}
 }
