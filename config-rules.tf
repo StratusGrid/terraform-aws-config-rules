@@ -1,8 +1,7 @@
 # ### Global ###
 # # Root user account config rules
 
-# Deprecated in version ??
-
+# Deprecated in version 2.0.0, remove from code in next release
 # #https://docs.aws.amazon.com/config/latest/developerguide/root-account-mfa-enabled.html
 # resource "aws_config_config_rule" "root_account_mfa_enabled" {
 #   name  = "root-account-mfa-enabled"
@@ -19,7 +18,7 @@
 # }
 
 
-# Deprecated in version ??
+# Deprecated in version 2.0.0, remove from code in next release
 # #https://docs.aws.amazon.com/config/latest/developerguide/iam-root-access-key-check.html
 # resource "aws_config_config_rule" "iam_root_access_key_check" {
 #   name  = "iam-root-access-key-check"
@@ -36,8 +35,7 @@
 # }
 
 
-# Deprecated in version ??
-
+# Deprecated in version 2.0.0, remove from code in next release
 # #https://docs.aws.amazon.com/config/latest/developerguide/iam-user-mfa-enabled.html
 # resource "aws_config_config_rule" "iam_user_mfa_enabled" {
 #   name  = "iam-user-mfa-enabled"
@@ -53,7 +51,7 @@
 #   tags = local.common_tags
 # }
 
-# Deprecated in version ??
+# Deprecated in version 2.0.0, remove from code in next release
 # ### Regional Rules ###
 # # https://docs.aws.amazon.com/config/latest/developerguide/required-tags.html
 # resource "aws_config_config_rule" "required_tags" {
@@ -85,63 +83,45 @@ resource "aws_config_config_rule" "aws_managed_rules" {
   }
 
   input_parameters = length(each.value.input_parameters) > 0 ? jsonencode(each.value.input_parameters) : null
+
+  tags = local.common_tags
 }
 
-# # AWS Managed rules could be a combination of Global and Regional rules for list of available rules check
-# # https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html
-# resource "aws_config_config_rule" "custom_managed_rules" {
-#   for_each = var.custom_managed_rules != null ? var.custom_managed_rules : {}
+# AWS Managed rules could be a combination of Global and Regional rules for list of available rules check
+# https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html
+resource "aws_config_config_rule" "custom_managed_rules" {
+  for_each = var.custom_managed_rules != null ? var.custom_managed_rules : {}
 
-#   name        = each.key
-#   description = each.value.description
+  name        = each.key
+  description = each.value.description
 
-#   source {
-#     owner = "CUSTOM_POLICY"
-
-#     dynamic "source_detail" {
-#       for_each = each.value.source_detail
-#       content {
-#         maximum_execution_frequency = each.value.message_type == "ScheduledNotification" ? each.value.maximum_execution_frequency : null
-#         message_type                = each.value.message_type
-#       }
-#     }
-
-#     dynamic "custom_policy_details" {
-#       for_each = each.value.custom_policy_details
-#       content {
-#         enable_debug_log_delivery = each.value.enable_debug_log_delivery
-#         policy_runtime  = each.value.policy_runtime 
-#         policy_text = each.value.policy_text
-#       }
-#     }
-#   }
-# }
-
-
-resource "aws_config_config_rule" "example" {
-  name = "example"
+  scope {
+    compliance_resource_id    = lookup(each.value.scope, "compliance_resource_id", null)
+    compliance_resource_types = lookup(each.value.scope, "compliance_resource_types", null)
+    tag_key                   = lookup(each.value.scope, "tag_key", null)
+    tag_value                 = lookup(each.value.scope, "tag_value", null)
+  }
 
   source {
     owner = "CUSTOM_POLICY"
-
-    source_detail {
-      message_type = "ConfigurationItemChangeNotification"
+    dynamic "source_detail" {
+      for_each = each.value.source.source_detail != null ? [each.value.source.source_detail] : []
+      content {
+        maximum_execution_frequency = source_detail.value.message_type == "ScheduledNotification" ? source_detail.value.maximum_execution_frequency : null
+        # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule#message_type
+        message_type = source_detail.value.message_type
+      }
     }
 
-    custom_policy_details {
-      policy_runtime = "guard-2.x.x"
-      policy_text    = <<EOF
-      rule tableisactive when
-          resourceType == "AWS::DynamoDB::Table" {
-          configuration.tableStatus == ['ACTIVE']
+    dynamic "custom_policy_details" {
+      for_each = each.value.source.custom_policy_details != null ? [each.value.source.custom_policy_details] : []
+      content {
+        enable_debug_log_delivery = lookup(custom_policy_details.value, "enable_debug_log_delivery", null)
+        policy_runtime            = custom_policy_details.value.policy_runtime
+        policy_text               = custom_policy_details.value.policy_text
       }
-
-      rule checkcompliance when
-          resourceType == "AWS::DynamoDB::Table"
-          tableisactive {
-              supplementaryConfiguration.ContinuousBackupsDescription.pointInTimeRecoveryDescription.pointInTimeRecoveryStatus == "ENABLED"
-      }
-EOF                    
     }
   }
+
+  tags = local.common_tags
 }
