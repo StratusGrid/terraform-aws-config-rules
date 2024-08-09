@@ -1,0 +1,14 @@
+module "aws_config_rules_us_east_1" {
+  source = "StratusGrid/config-rules/aws"
+  # StratusGrid recommends pinning every module to a specific version
+  version = "x.x.x"
+
+  required_tags_enabled = true
+  required_tags = { # Yes, the actual required format is tag#Key and tag#Value
+    tag1Key   = "Provisioner"
+    tag1Value = "Terraform"
+    tag2Key   = "Customer"
+    tag3Key   = "Application"
+  }
+
+}

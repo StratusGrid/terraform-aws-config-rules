@@ -1,0 +1,28 @@
+module "aws_config_rules_us_east_1" {
+  source = "StratusGrid/config-rules/aws"
+  # StratusGrid recommends pinning every module to a specific version
+  version = "x.x.x"
+
+  custom_managed_rules = {
+    out-of-scope-ec2-instance-families = {
+      description = "Ensure EC2 instance configurations do not belong to out-of-scope families."
+      scope = {
+        compliance_resource_types = ["AWS::EC2::Instance"]
+      }
+      source = {
+        source_detail = {
+          message_type = "ConfigurationItemChangeNotification"
+        }
+        custom_policy_details = {
+          policy_runtime = "guard-2.x.x"
+          policy_text    = <<POLICY
+            rule check_out_of_scope_instance_families when resourceType == "AWS::EC2::Instance" {
+                configuration.instanceType != /x1e\.*/
+                configuration.instanceType != /x2i\.*/
+              }
+            POLICY
+        }
+      }
+    }
+  }
+}

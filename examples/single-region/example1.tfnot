@@ -3,13 +3,4 @@ module "aws_config_rules_us_east_1" {
   # StratusGrid recommends pinning every module to a specific version
   version = "x.x.x"
 
-  include_global_resource_rules = true #only include global resource on one region to prevent duplicate rules
-  required_tags_enabled = true
-
-  required_tags = { # Yes, the actual required format is tag#Key and tag#Value
-    tag1Key   = "Provisioner"
-    tag1Value = "Terraform"
-    tag2Key   = "Customer"
-    tag3Key   = "Application"
-  }
 }
