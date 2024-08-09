@@ -13,15 +13,44 @@ content: |-
 
   GitHub: [StratusGrid/terraform-aws-config-rules](https://github.com/StratusGrid/terraform-aws-config-rules)
 
+  Terraform Registry: [StratusGrid/config-rules](https://registry.tf-registry-prod-use1.terraform.io/modules/StratusGrid/config-rules/aws/latest)
+
   AWS Config rules module to put in standard policies
 
-  Note: Config Rule requires an existing Configuration Recorder to be present.
+  Note: Config Rule requires an existing Configuration Recorder to be present. There is available a StratusGrid terraform module to provision it [StratusGrid/config-recorder](https://registry.tf-registry-prod-use1.terraform.io/modules/StratusGrid/config-recorder/aws/latest)
   
   ## Example Single Region Configuration:
+  The simplest example deploy the default AWS managed rules we added in the module
+  - ROOT_ACCOUNT_MFA_ENABLED
+  - IAM_ROOT_ACCESS_KEY_CHECK
+  - IAM_USER_MFA_ENABLED
+
+  If you want to disable those default rules set `enable_default_aws_managed_rules = false`
+
   ```hcl
   {{ include "examples/single-region/example1.tfnot" }}
   ```
   ---
+  The second example adds besides the default AWS managed rules added in the example 1 the AWS managed rule required_tags_enabled along with the required parameters
+
+  ```hcl
+  {{ include "examples/single-region/example2.tfnot" }}
+  ```
+  ---
+  The third example use the aws_managed_rules map with two defined rules. The existing AWS Managed rules can be found [here](https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html), and you can map them as shown below.
+
+  ```hcl
+  {{ include "examples/single-region/example3.tfnot" }}
+  ```
+  ![Alt aws-manage-rules](.config/aws-managed-rules.png)
+
+  ---
+  The fourth example shows the creation of a custom rule using [Guard domain-specific language (DSL)](https://docs.aws.amazon.com/cfn-guard/latest/ug/writing-rules.html)
+
+  ```hcl
+  {{ include "examples/single-region/example4.tfnot" }}
+  ```
+
   ## Example Multi Region Configuration:
   ```hcl
   {{ include "examples/multi-region/example1.tfnot" }}

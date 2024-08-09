@@ -1,0 +1,20 @@
+module "aws_config_rules_us_east_1" {
+  source = "StratusGrid/config-rules/aws"
+  # StratusGrid recommends pinning every module to a specific version
+  version = "x.x.x"
+
+  aws_managed_rules = {
+    access-keys-rotated = {
+      description = "Checks if active IAM access keys are rotated (changed) within the number of days specified in maxAccessKeyAge. The rule is NON_COMPLIANT if access keys are not rotated within the specified time period."
+      identifier  = "ACCESS_KEYS_ROTATED"
+      input_parameters = {
+        maxAccessKeyAge = "10"
+      }
+    }
+    cloudtrail-security-trail-enabled = {
+      description      = "Checks that there is at least one AWS CloudTrail trail defined with security best practices. This rule is COMPLIANT if there is at least one trail that meets: https://docs.aws.amazon.com/config/latest/developerguide/cloudtrail-security-trail-enabled.html"
+      identifier       = "CLOUDTRAIL_SECURITY_TRAIL_ENABLED"
+      input_parameters = {}
+    }    
+  }  
+}
