@@ -220,6 +220,23 @@ module "aws_config_rules_us_west_2" {
 No outputs.
 
  ---
+ ### Migrating to V2
+
+ In the V2 version, the resource enumeration for AWS Config Rules has been updated. This change impacts how Terraform manages the lifecycle of your Config Rules deployed with any previous versions.
+ 
+ In the previous versions the resources were naming with fixed names. e.g ("root-account-mfa-enabled", "iam-root-access-key-check", "required-tags"),
+ now with this new version as we're using a for_each to the generation of resources the naming convention changes to from a fixed name to a list with the keys passing in the variable aws_managed_rules e.g. (aws_managed_rules["name-1"], aws_managed_rules["name-2"])
+ 
+ The actions required for the migration would been
+ 1. Destroy existing config Rules
+ 2. Upgrade of the module to the latest version 2.x.x
+ 3. Recreate the config rules
+
+ Why This is Necessary:
+ The change in resource enumeration means that Terraform will no longer recognize the existing resources as being managed by the current state. 
+ As a result, Terraform would otherwise attempt to create new resources rather than update the existing ones, leading to duplicate rules.
+
+
 
  <span style="color:red">Note:</span> Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
 <!-- END_TF_DOCS -->
